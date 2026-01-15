@@ -27,6 +27,22 @@ The core highlight of this project is its **Data-Driven Testing** capability. It
 ## 🧪 The "Data-Driven" Logic
 This framework replaces hardcoded Cucumber Data Tables with external Excel files.
 
+## How to Run locally
+**Prerequisites**
+Java JDK 11 or higher installed.
+Maven installed and configured in system variables.
+
+**Steps**
+1. Clone the repository:
+`git clone [https://github.com/YOUR_USERNAME/Flipkart-E2E-Automation.git](https://github.com/YOUR_USERNAME/Flipkart-E2E-Automation.git)`
+
+2. Navigate to the project directory:
+`cd Flipkart-E2E-Automation`
+
+3. Run the tests using Maven:
+`mvn clean test`
+
+
 **1. The Feature File:**
 ```gherkin
 When I add users from excel "UserData.xlsx" sheet "Sheet1"
