@@ -1,0 +1,16 @@
+[
+  {
+    "userRole": "ESS",
+    "employeeName": "Ranga  Akunuri",
+    "status": "Enabled",
+    "username": "ranga_json_test",
+    "password": "Password@123"
+  },
+  {
+    "userRole": "Admin",
+    "employeeName": "Odis  Adalwin",
+    "status": "Disabled",
+    "username": "odis_json_admin",
+    "password": "Password@123"
+  }
+]

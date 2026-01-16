@@ -1,0 +1,17 @@
+[
+  {
+    "firstName": "Bruce",
+    "lastName": "Wayne",
+    "photoFile": "profile.jpg"
+  },
+  {
+    "firstName": "Clark",
+    "lastName": "Kent",
+    "photoFile": "profile.jpg"
+  },
+  {
+    "firstName": "Diana",
+    "lastName": "Prince",
+    "photoFile": "profile.jpg"
+  }
+]

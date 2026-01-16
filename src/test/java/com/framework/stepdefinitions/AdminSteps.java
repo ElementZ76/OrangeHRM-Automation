@@ -7,9 +7,11 @@ import java.util.Map;
 import org.testng.Assert;
 
 import com.framework.base.TestBase;
+import com.framework.models.UserData;
 import com.framework.pages.AdminPage;
 import com.framework.pages.DashboardPage;
 import com.framework.pages.LoginPage;
+import com.framework.utils.JsonUtils;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -22,22 +24,16 @@ public class AdminSteps extends TestBase {
 	DashboardPage dashboardPage;
 	AdminPage adminPage = new AdminPage();
 	
-	@When("I add users from excel {string} sheet {string}")
-	public void i_add_users_from_excel_sheet(String fileName, String sheetName) throws InterruptedException, IOException {
-		List<Map<String, String>> userData = ExcelUtils.getData(fileName, sheetName);
+	@When("I add users from json file {string}")
+	public void i_add_users_from_json_file(String fileName) throws InterruptedException, IOException {
+		List<UserData> userList = JsonUtils.getUserData(fileName);
 		
-		for(Map<String, String> row : userData) {
+		for(UserData user : userList) {
 			adminPage.addUser(); 
 			
-			String role = row.get("User Role");
-			String employeeName = row.get("Employee Name");
-			String status = row.get("Status");
-            String user = row.get("Username");
-            String pass = row.get("Password");
-            
             System.out.println("Adding User: " + user);
             
-            adminPage.addUser(role, employeeName, status, user, pass);
+            adminPage.addUser(user.getUserRole(), user.getEmployeeName(), user.getStatus(), user.getUsername(), user.getPassword());;
 		}
 	}
 	

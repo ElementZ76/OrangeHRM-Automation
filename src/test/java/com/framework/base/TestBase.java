@@ -113,6 +113,13 @@ public class TestBase {
 		option.click();
 	}
 	
+	//method to wait for any element to disappear
+	public static void waitForInvisibility(WebElement element) {
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	    // This waits until the element is either GONE from the DOM or invisible
+	    wait.until(ExpectedConditions.invisibilityOf(element));
+	}
+	
 	//teardown
 	public void tearDown() {
 		if(driver != null) {
