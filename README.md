@@ -5,16 +5,18 @@
 ## 📄 Overview
 This repository hosts a **Hybrid Test Automation Framework** designed for the **OrangeHRM** HR Management System.
 
-The framework has been re-architected to use **JSON-based Data Driven Testing**. It leverages the **Jackson** library to deserialize complex test data (User Roles, Employee Profiles) directly into Java POJOs, ensuring type safety and maintainability. It is designed to handle dynamic enterprise UI elements, including asynchronous loading spinners and disappearing toast messages.
+The framework has been re-architected to use **JSON-based Data Driven Testing**. It leverages the **Jackson** library to deserialize complex test data directly into Java POJOs (`UserData`, `EmployeeData`), ensuring type safety and maintainability. It is robustly designed to handle dynamic enterprise UI elements, including asynchronous loading spinners (`oxd-form-loader`) and complex file uploads.
 
 ## 🚀 Key Features
-* **JSON Data Pipeline:** Replaced legacy Excel handling with `JsonUtils`. Reads `.json` files and maps them to strictly typed Java Objects (`UserData`, `EmployeeData`).
-* **Robust Synchronization:** Implemented a **"Smart Wait"** strategy in `TestBase`.
+* **JSON Data Pipeline:** Replaced legacy Excel handling with `JsonUtils`. Reads `.json` files and maps them to strictly typed Java Objects for both **Admin** and **PIM** modules.
+* **Robust Synchronization:** Implemented a **"Smart Wait"** strategy in `TestBase`:
     * `waitForVisibility`: Handles standard page loads.
-    * `waitForInvisibility`: Specifically handles blocking UI elements like the **`oxd-form-loader`** spinner to prevent `ElementClickInterceptedException`.
+    * **`waitForInvisibility`**: Specifically handles blocking UI elements like the loading spinner to prevent `ElementClickInterceptedException`.
+* **PIM Module Automation:**
+    * Handles **Employee Onboarding** flows.
+    * Implements **Image Upload** logic by bypassing OS-level popups (injecting file paths directly into hidden `input` tags).
 * **Page Object Model (POM):** Strict separation of Page Objects (Locators) and Test Scripts (Steps) using Selenium's `PageFactory`.
 * **BDD Architecture:** Business logic is written in plain English using **Cucumber Gherkin**, bridging the gap between QA and stakeholders.
-* **Failure Analysis:** Automated screenshot capture on scenario failure via `ApplicationHooks`.
 
 ## 🛠️ Tech Stack
 | Component | Tool / Library |
@@ -29,10 +31,11 @@ The framework has been re-architected to use **JSON-based Data Driven Testing**.
 ## 🧪 The "Data-Driven" Logic (JSON)
 The framework iterates through JSON arrays to execute bulk scenarios.
 
-**1. The Feature File:**
+**1. The Feature File (PIM Example):**
 ```gherkin
 @JsonDriven
 Scenario: Bulk create employees from JSON
+  Given I navigate to the PIM module
   When I add new employees from json file "employees.json"
 
 ```
@@ -93,7 +96,8 @@ mvn clean test
 ## 👤 Author
 
 **Praveen PR**
-*SDET Aspirant*
+*SRM IST, Kattankulathur | SDET Aspirant* 
+LinkedIn: https://www.linkedin.com/in/praveen-pr-b91b15289/
 
 ```
 
